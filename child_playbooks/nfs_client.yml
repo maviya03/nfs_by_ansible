@@ -1,0 +1,29 @@
+---
+ - name: configuring nfs-clients for nfs
+   hosts: host
+   vars_files:
+      /root/ansible/variable.yml
+   tasks:
+      - name: ensuring nfs-utils packages is available on nfs-client
+        yum:
+           name: nfs-utils
+           state: present
+
+      - name: starting and enabling nfs-utils service on nfs-client
+        service:
+           name: nfs-utils
+           enabled: yes
+           state: restarted
+      
+      - name: creating the directory to be mounted on nfs-client
+        file:
+             path: "{{ mount_point }}"
+             state: directory
+      - name: the NFS export is mounted and in /etc/fstab file on nfs-client
+        mount: 
+           path: "{{ mount_point }}"
+           src: nfs-server:{{ shared_dir }}
+           state: mounted
+           fstype: nfs
+
+

@@ -1,0 +1,10 @@
+---
+ - name: installing required packages
+   hosts: all
+   tasks:
+        - name: Installing nfs-utils package on nfs-server
+          yum:
+             name: nfs-utils
+             state: present
+
+
