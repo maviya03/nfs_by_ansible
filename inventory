@@ -1,0 +1,5 @@
+[server]
+nfs-server
+
+[host]
+server1
