@@ -1,0 +1,3 @@
+{{ shared_dir }}{% for host in groups['host'] %}
+ {{ host }}(rw,no_root_squash)
+{%- endfor %}
