@@ -1,2 +1,2 @@
-shared_dir: /root/maviya
-mount_point: /root/shared
+shared_dir: /home/ec2-user/maviya   # define the path of directory to be shared
+mount_point: /home/ec2-user/shared  # define the path to be mounted 
