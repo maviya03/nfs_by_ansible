@@ -11,7 +11,7 @@
 
       - name: starting and enabling nfs-utils service on nfs-client
         service:
-           name: nfs-utils
+           name: nfs-server
            enabled: yes
            state: restarted
       
@@ -19,6 +19,15 @@
         file:
              path: "{{ mount_point }}"
              state: directory
+      - name: remove /etc/hosts on client node
+        file:
+             path: /etc/hosts
+             state: absent
+      - name: updating /etc/hosts file as on server
+        copy: 
+            src: /etc/hosts
+            dest: /etc/hosts
+
       - name: the NFS export is mounted and in /etc/fstab file on nfs-client
         mount: 
            path: "{{ mount_point }}"

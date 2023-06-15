@@ -11,10 +11,17 @@
             owner: root
             mode: '0755'
             state: directory
-
+       - name: remove /etc/hosts on client node
+         file:
+             path: /etc/hosts
+             state: absent
+       - name: updating /etc/hosts file as on server
+         copy:
+            src: /etc/hosts
+            dest: /etc/hosts
        - name: configuring /etc/exports.d/share.exports on nfs-server
          template:
-            src: /root/share.exports.j2
+            src: /root/ansible/share.exports.j2    #path of the jinja2 template
             dest: /etc/exports.d/share.exports
             owner: root
             group: root
